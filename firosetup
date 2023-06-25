@@ -1,0 +1,15 @@
+#!/bin/bash
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install ufw -y
+sudo ufw allow ssh/tcp
+sudo ufw limit ssh/tcp
+sudo ufw allow 8168/tcp
+sudo ufw logging on
+sudo ufw enable
+sudo fallocate -l 4G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+sudo reboot
